@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1667216348 source:c:\users\sedna\desktop\codeblocks\assignment1\assignment\main.cpp
+	<iostream>
+	"set.h"
+	<math.h>
+
+1667208339 c:\users\sedna\desktop\codeblocks\assignment1\assignment\set.h
+
