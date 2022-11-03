@@ -1,6 +1,6 @@
 #include <iostream>
 #include <chrono>
-#include <main.h>
+#include "main.h"
 
 void benchmark(void (*func)(int))
 {

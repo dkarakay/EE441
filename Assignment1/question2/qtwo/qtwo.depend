@@ -1,4 +1,7 @@
 # depslib dependency file v1.0
-1667378196 source:c:\users\sedna\desktop\codeblocks\assignment1\question2\qtwo\main.cpp
+1667472301 source:c:\users\sedna\desktop\codeblocks\assignment1\question2\qtwo\main.cpp
 	<iostream>
+	"test.h"
+
+1667472111 c:\users\sedna\desktop\codeblocks\assignment1\question2\qtwo\test.h
 
