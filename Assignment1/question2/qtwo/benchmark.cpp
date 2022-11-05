@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
-#include "main.h"
+#include "print.h"
+#include "hanoit.h"
 
 void benchmark(void (*func)(int))
 {
@@ -24,12 +25,11 @@ void benchmark(void (*func)(int))
     std::cout << std::endl;
 }
 
-/*void wrapper_solve_hanoi(int n)
+void wrapper_solve_hanoi(int n)
 {
     auto game = Hanoi(n);
     solve_hanoi(game);
 }
-*/
 
 void wrapper_print_backwards(int n)
 {

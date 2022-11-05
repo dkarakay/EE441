@@ -1,6 +1,35 @@
-/*#include <iostream>
-#include "test.h"
-using namespace std;
+#ifndef HANOIT_H_INCLUDED
+#define HANOIT_H_INCLUDED
+
+//using namespace std;
+
+
+class Disc
+{
+private:
+    int diameter=0;
+public:
+    Disc(int d);
+    int getData();
+};
+
+class Hanoi
+{
+public:
+    int discNumber=0;
+    int moveCount=0;
+    int lengthOfRods[3];
+    Disc* rod0[20];
+    Disc* rod1[20];
+    Disc* rod2[20];
+    int allRods[3][20];
+    Hanoi (int n);
+    void move(int from, int to);
+    void print_rods();
+    void copyingArrayFromAllRods(bool c);
+
+};
+
 
 Disc::Disc(int d)
 {
@@ -17,6 +46,7 @@ Hanoi::Hanoi(int n)
 {
     discNumber = n;
 
+    //cout << discNumber << endl;
 
     for(int i=0; i<20; i++)
     {
@@ -80,7 +110,7 @@ void Hanoi::copyingArrayFromAllRods(bool check)
 
 void Hanoi::print_rods()
 {
-    cout << "copy" << endl;
+    /*cout << "copy" << endl;
 
     for(int i = 19; i>=0; i--)
     {
@@ -94,8 +124,8 @@ void Hanoi::print_rods()
             cout << rod0Val << " - " << rod1Val << " - " << rod2Val << endl;
         }
     }
-
-    cout << "original" << endl;
+*/
+   /* cout << "original" << endl;
 
     for(int i = 19; i>=0; i--)
     {
@@ -109,7 +139,7 @@ void Hanoi::print_rods()
         {
             cout << rod0Val << " - " << rod1Val << " - " << rod2Val << endl;
         }
-    }
+    }*/
 }
 
 void Hanoi::move(int from, int to)
@@ -117,7 +147,7 @@ void Hanoi::move(int from, int to)
 
     if(lengthOfRods[from] <= 0 || lengthOfRods[to] >= 20 )
     {
-        cout << "Empty or invalid index" << endl;
+       // cout << "Empty or invalid index" << endl;
         return;
     }
 
@@ -144,18 +174,18 @@ void Hanoi::move(int from, int to)
         cout << fromL << "L->" << toL << endl;
         cout << fromDisc << "Disc->" << toDisc << endl;
     */
- /*   if(toDisc == 0 || (toDisc != 0 && fromDisc < toDisc))
+    if(toDisc == 0 || (toDisc != 0 && fromDisc < toDisc))
     {
         allRods[from][fromRodMaxIndex] = 0;
         allRods[to][toRodMaxIndex] = fromDisc;
         lengthOfRods[from] -=1;
         lengthOfRods[to] +=1;
 
-        cout << "Disc " << fromDisc << " is moved from Rod " << from << " to Rod " << to <<endl;
+        //cout << "Disc " << fromDisc << " is moved from Rod " << from << " to Rod " << to <<endl;
     }
     else
     {
-        cout << "Invalid move" << endl;
+        //cout << "Invalid move" << endl;
         return;
     }
 
@@ -166,13 +196,14 @@ void Hanoi::move(int from, int to)
 }
 
 
-/*
+
+
 void solve_hanoi_by_recursion(Hanoi &game,int numberOfDisc, int fromR, int toR,
                               int remainingR)
 {
     if (numberOfDisc == 0)
     {
-        cout << "Move count: " << game.moveCount << endl;
+        //cout << "Move count: " << game.moveCount << endl;
 
         return;
     }
@@ -187,55 +218,6 @@ void solve_hanoi(Hanoi& game)
 }
 
 
-/*
-void print_backwards(char const * str)
-{
-    if(*str) // If the character of the string is available
-    {
-        print_backwards(str+1); // Recursively
-        cout<<*str<<endl;
-    }
 
-}
-*/
-/*
+#endif // SET_HANOIT_INCLUDED
 
-int n_th_prime(int n)
-{
-    int x = 1; // Number that we are checking if it is prime
-    int i = 2; // Index
-    int count = 0; // Count of prime numbers that we found
-
-    // If count is less than n
-    while(count < n)
-    {
-        x +=1; // Increment x by 1
-        for(i = 2; i<x; i++) // traverse numbers till x s.t. finding prime numbers will be easy
-        {
-            if(x%i == 0)
-            {
-                break;
-            }
-        }
-        if(i == x) // If x and i are equal, we can say that x is a prime number
-        {
-            count +=1;
-        }
-    }
-    return x;
-}
-*/
-/*int main()
-{
-
-    Hanoi h = Hanoi(4);
-    h.print_rods();
-    solve_hanoi(h);
-
-    //print_backwards("EE441 is fun");
-    //cout<<endl;
-    //cout<<"nth_prime(25): "<<nth_prime(25)<<endl;
-
-    return 0;
-}
-*/
