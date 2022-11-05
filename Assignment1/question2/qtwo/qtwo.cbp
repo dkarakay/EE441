@@ -33,7 +33,6 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="benchmark.cpp" />
-		<Unit filename="main.cpp" />
 		<Unit filename="print.h" />
 		<Unit filename="test.h" />
 		<Extensions>

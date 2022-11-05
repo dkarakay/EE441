@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include "print.h"
-#include "hanoit.h"
+#include "test.h"
 
 void benchmark(void (*func)(int))
 {
