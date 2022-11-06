@@ -1,7 +1,9 @@
+/*
 #include <iostream>
 #include <chrono>
+#include "nth_prime.h"
+#include "hanoi.h"
 #include "print.h"
-#include "test.h"
 
 void benchmark(void (*func)(int))
 {
@@ -55,3 +57,5 @@ int main()
     benchmark(wrapper_print_backwards);
     benchmark(wrapper_nth_prime);
 }
+
+*/

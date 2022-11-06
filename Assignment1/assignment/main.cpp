@@ -3,10 +3,11 @@
 #include <math.h>
 using namespace std;
 
-
+// Matrix Constructor
 template <int N>
 Matrix<N> :: Matrix ()
 {
+    // Use for loops to create identity matrix for NxN
     for(int i = 0; i < SIZE; i++)
     {
         for(int j = 0; j < SIZE; j++)
@@ -25,6 +26,7 @@ Matrix<N> :: Matrix ()
 
 }
 
+// Get element with (row, column) return -1 for invalid input
 template <int N>
 int Matrix<N>:: getElement(int i, int j)
 {
@@ -41,6 +43,7 @@ int Matrix<N>:: getElement(int i, int j)
     return data[i][j];
 }
 
+// Set element with (row, column) return -1 for invalid input
 template <int N>
 int Matrix<N>:: setElement(int i, int j, int input)
 {
@@ -55,8 +58,11 @@ int Matrix<N>:: setElement(int i, int j, int input)
     }
 
     data[i][j] = input;
+
+    return data[i][j];
 }
 
+// Print matrix
 template <int N>
 void Matrix<N>:: printT()
 {
@@ -69,6 +75,8 @@ void Matrix<N>:: printT()
         cout<<endl;
     }
 }
+
+// Add two matrices and return result as a new Matrix object
 template <int N>
 Matrix<N> matrixAddition(Matrix<N> m1, Matrix<N> m2)
 {
@@ -77,14 +85,18 @@ Matrix<N> matrixAddition(Matrix<N> m1, Matrix<N> m2)
     {
         for(int j = 0; j < N; j++)
         {
+            // Get pairwise elements of matrix 1 and 2
             int m1Data = m1.getElement(i,j);
             int m2Data = m2.getElement(i,j);
+
+            // Add m1 to m2 and set result matrix data
             newMatrix.setElement(i,j,m1Data+m2Data);
         }
     }
     return newMatrix;
 }
 
+// Subtract two matrices and return result as a new Matrix object
 template <int N>
 Matrix<N> matrixSubtraction(Matrix<N> m1, Matrix<N> m2)
 {
@@ -93,14 +105,18 @@ Matrix<N> matrixSubtraction(Matrix<N> m1, Matrix<N> m2)
     {
         for(int j = 0; j < N; j++)
         {
+            // Get pairwise elements of matrix 1 and 2
             int m1Data = m1.getElement(i,j);
             int m2Data = m2.getElement(i,j);
+
+            // Subtract m2 from m1 and set result matrix data
             newMatrix.setElement(i,j,m1Data-m2Data);
         }
     }
     return newMatrix;
 }
 
+// Multiply two matrices and return result as a new Matrix object
 template <int N>
 Matrix<N> matrixMultiplication(Matrix<N> m1, Matrix<N> m2)
 {
@@ -109,11 +125,15 @@ Matrix<N> matrixMultiplication(Matrix<N> m1, Matrix<N> m2)
     {
         for(int j = 0; j < N; j++)
         {
+            // Set result Matrix (row,column) to zero before making multiplication
             newMatrix.setElement(i,j,0);
             for(int k = 0; k < N; k++)
             {
+                // Getting elements for multiplication process
                 int m1Data = m1.getElement(i,k);
                 int m2Data = m2.getElement(k,j);
+
+                // Get current data of new matrix and replace the current data by setting matrix index
                 int currentData = newMatrix.getElement(i,j);
                 currentData += m1Data*m2Data;
                 newMatrix.setElement(i,j,currentData);
@@ -126,12 +146,16 @@ Matrix<N> matrixMultiplication(Matrix<N> m1, Matrix<N> m2)
     return newMatrix;
 }
 
-
+// Calculate determinant of the matrix
 template <int N>
 int matrixDeterminant(Matrix<N> m1, int nextSize)
 {
+    // Creating sub matrix
     Matrix<N> mSub;
     int determinant = 0;
+
+    // If size of matrix is 2x2, then calculate by [a,b] det=> a*d- c*b
+    //                                             [c,d]
     if(nextSize==2)
     {
         int zz = m1.getElement(0,0);
@@ -143,26 +167,30 @@ int matrixDeterminant(Matrix<N> m1, int nextSize)
     }
     else
     {
-
         for (int x = 0; x < nextSize; x++)
         {
+            // Position for row
             int posi = 0;
             for(int i = 1; i < nextSize; i++)
             {
+                // Position for column
                 int posj = 0;
                 for(int j = 0; j < nextSize; j++)
                 {
+                    // If the positions are equal, then skip
                     if(j==x)
                     {
                         continue;
                     }
-
+                    // Setting element of sub matrix
                     mSub.setElement(posi,posj,m1.getElement(i,j));
                     posj++;
 
                 }
                 posi++;
             }
+            // Calculate determinant by utilizing recursion
+            // Decrease size n by 1 to getting the sub sub matrix
             determinant = determinant + (pow(-1, x) * m1.getElement(0,x) * matrixDeterminant(mSub,nextSize-1));
         }
 
@@ -178,9 +206,10 @@ int main()
     m1.printT();
     cout<<endl;
 
-    cout<< m1.getElement(0,1)<< endl;
-    cout<< m1.getElement(0,0)<< endl;
-    cout<< m1.setElement(0,0,1)<< endl;
+    cout<<"Getting element(0,1): " << m1.getElement(0,1)<< endl;
+    cout<< "Getting element(0,0): "<<m1.getElement(0,0)<< endl;
+    cout<< "Setting element(0,0,1): "<<m1.setElement(0,0,5)<< endl;
+    cout<<endl;
     m1.printT();
     cout<<endl;
 

@@ -1,5 +1,5 @@
-#ifndef TEST_H_INCLUDED
-#define TEST_H_INCLUDED
+#ifndef HANOI_H_INCLUDED
+#define HANOI_H_INCLUDED
 
 using namespace std;
 
@@ -66,7 +66,7 @@ Hanoi::Hanoi(int n)
     number_of_disc = n;
 
     // Print the number of disc
-    cout << number_of_disc << endl;
+    cout <<"#disc: " << number_of_disc << endl;
 
     // Resetting all array to zero
     for(int i=0; i<20; i++)
@@ -173,15 +173,12 @@ void Hanoi::move(int from, int to)
     int to_rod_max_index = length_of_rods[to];
 
 
-    // If length is greater than 0, we need to subtract 1 from the lengths to get indexes
+    // If length is greater than 0, we need to subtract 1 from the length
     if(from_rod_max_index > 0)
     {
         from_rod_max_index -= 1;
     }
-    if(to_rod_max_index > 0)
-    {
-        to_rod_max_index -= 0;
-    }
+
 
     // Getting the diameter value of the top element of from & to rods
     from_disc = all_rods[from][from_rod_max_index];
@@ -203,11 +200,11 @@ void Hanoi::move(int from, int to)
         //Incrementing the length of to rod
         length_of_rods[to] +=1;
 
-        cout << "Disc " << from_disc << " is moved from Rod " << from << " to Rod " << to <<endl;
+        //cout << "Disc " << from_disc << " is moved from Rod " << from << " to Rod " << to <<endl;
     }
     else
     {
-        cout << "Invalid move" << endl;
+        //cout << "Invalid move" << endl;
         return;
     }
 
@@ -237,7 +234,7 @@ void solve_hanoi_by_recursion(Hanoi &game,int number_of_disc, int from_rod, int 
         return;
     }
 
-    // Call recursively to move each Disc to middle one (middle one is the target)
+    // Call recursively to move each Disc till we have the larger one free to move
     solve_hanoi_by_recursion(game,number_of_disc - 1, from_rod, middle_rod, to_rod);
     game.move(from_rod,to_rod);
 
@@ -248,8 +245,10 @@ void solve_hanoi_by_recursion(Hanoi &game,int number_of_disc, int from_rod, int 
 void solve_hanoi(Hanoi& game)
 {
     solve_hanoi_by_recursion(game, game.number_of_disc,0,2,1);
+    //cout << "Move count: " << game.move_count << endl;
+
 }
 
 
 
-#endif // TEST_H_INCLUDED
+#endif // HANOI_H_INCLUDED

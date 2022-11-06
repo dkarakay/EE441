@@ -33,8 +33,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="benchmark.cpp" />
+		<Unit filename="hanoi.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="nth_prime.h" />
 		<Unit filename="print.h" />
-		<Unit filename="test.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
