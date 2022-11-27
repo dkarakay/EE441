@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
 
-    Hanoi h = Hanoi(8);
+    Hanoi h = Hanoi(7);
     h.print_rods();
     solve_hanoi(h);
     cout<<endl;
