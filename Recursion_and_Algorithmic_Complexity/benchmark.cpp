@@ -1,20 +1,21 @@
-/*
 #include <iostream>
 #include <chrono>
+#include "solve_hanoi.h"
 #include "nth_prime.h"
-#include "hanoi.h"
-#include "print.h"
+#include "print_backwards.h"
+
+// run brenchmark.cpp after commenting the whole main.cpp file!
 
 void benchmark(void (*func)(int))
 {
     int const AMOUNT = 20;
     int const REPEAT = 10;
     double results[AMOUNT];
-    for (int i = 0 ; i < AMOUNT ; ++i)
-    {
+    for (int i = 0 ; i < AMOUNT ; ++i) {
         auto start = std::chrono::steady_clock::now();
-        for (int j = 0 ; j < REPEAT ; ++j)
-        {
+        for (int j = 0 ; j < REPEAT ; ++j) {
+            //std::cout << "j value " << j << std::endl;
+            //std::cout << "i value " << i << std::endl;
             func(i+1);
         }
         auto finish = std::chrono::steady_clock::now();
@@ -23,8 +24,7 @@ void benchmark(void (*func)(int))
 
     std::cout << std::endl << std::endl;
     std::cout << "n\ttime (ns)\n";
-    for (int i = 0 ; i < AMOUNT ; ++i)
-    {
+    for (int i = 0 ; i < AMOUNT ; ++i) {
         std::cout << i+1 << '\t' << results[i] << '\n';
     }
     std::cout << std::endl;
@@ -39,8 +39,7 @@ void wrapper_solve_hanoi(int n)
 void wrapper_print_backwards(int n)
 {
     char * str = new char[n+1];
-    for (int i = 0 ; i < n ; ++i)
-    {
+    for (int i = 0 ; i < n ; ++i) {
         str[i] = 'a' + i;
     }
     str[n] = '\0';
@@ -58,9 +57,6 @@ void wrapper_nth_prime(int n)
 int main()
 {
     benchmark(wrapper_solve_hanoi);
-    benchmark(wrapper_print_backwards);
-    benchmark(wrapper_nth_prime);
+    //benchmark(wrapper_print_backwards);
+    //benchmark(wrapper_nth_prime);
 }
-
-
-*/

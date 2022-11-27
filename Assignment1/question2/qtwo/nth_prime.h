@@ -2,6 +2,7 @@
 #ifndef NTH_PRIME_H_INCLUDED
 #define NTH_PRIME_H_INCLUDED
 
+using namespace std;
 
 int nth_prime(int n)
 {

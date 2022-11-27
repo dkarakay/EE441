@@ -200,11 +200,11 @@ void Hanoi::move(int from, int to)
         //Incrementing the length of to rod
         length_of_rods[to] +=1;
 
-        //cout << "Disc " << from_disc << " is moved from Rod " << from << " to Rod " << to <<endl;
+        cout << "Disc " << from_disc << " is moved from Rod " << from << " to Rod " << to <<endl;
     }
     else
     {
-        //cout << "Invalid move" << endl;
+        cout << "Invalid move" << endl;
         return;
     }
 
@@ -245,7 +245,6 @@ void solve_hanoi_by_recursion(Hanoi &game,int number_of_disc, int from_rod, int 
 void solve_hanoi(Hanoi& game)
 {
     solve_hanoi_by_recursion(game, game.number_of_disc,0,2,1);
-    //cout << "Move count: " << game.move_count << endl;
 
 }
 
