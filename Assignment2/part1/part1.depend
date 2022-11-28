@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1669632252 source:c:\users\sedna\desktop\ee441\assignment2\part1\main.cpp
+	<iostream>
+	<fstream>
+
