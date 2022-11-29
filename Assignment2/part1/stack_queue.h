@@ -1,4 +1,6 @@
-#define SIZE 5000
+// Size can be modified
+#define SIZE 1025
+
 using namespace std;
 
 template <class T> class StackQueue
@@ -7,15 +9,15 @@ template <class T> class StackQueue
 public:
     StackQueue();
 
-    void push_rear(T el);
-    void push_front(T el);
+    void push_rear(T val);
+    void push_front(T val);
 
     T pop_rear();
     T pop_front();
     T peek_front();
 
     void print_elements();
-    void move_all_elements(bool right);
+    void move_all_elements();
     bool is_full();
     int get_size();
 
@@ -27,53 +29,50 @@ private:
 
 };
 
+// Initialize Stack Queue
 template <class T> StackQueue<T>::StackQueue()
 {
+    // Make top=-1 and tail=0
     top = -1;
     tail = 0;
 }
 
-template <class T> void StackQueue<T>::push_front(T k)
+// Push element to front
+template <class T> void StackQueue<T>::push_front(T val)
 {
 
     if (is_full())
     {
-        // Display message when no elements can be pushed
-        // into it
-       // cout << "StackQueue is full\n";
         return;
     }
-
-    //cout << "Pushed front: " << k << endl;
-
+    // Increment top by 1, since we added a new element
     top = top + 1;
 
-    // Now, adding element to stack
-    stqu[top] = k;
-    //print_elements();
+    // Push element to front of SQ
+    stqu[top] = val;
 }
 
 
-
+// Push element to rear
 template <class T> void StackQueue<T>::push_rear(T val)
 {
 
     if (is_full())
     {
-    //    cout << "StackQueue is full\n";
         return;
     }
 
-   // cout << "Pushed rear: " << val << endl;
-
-
+    // Move all elements to make tail zero
     move_all_elements(true);
 
+    // Increment top by 1, since we moved every element
     top = top + 1;
+
+    // Push element to rear of SQ
     stqu[tail] = val;
-    //print_elements();
 }
 
+// If the Stack is full
 template <class T> bool StackQueue<T>::is_full()
 {
     if (top != (SIZE - 1))
@@ -81,10 +80,13 @@ template <class T> bool StackQueue<T>::is_full()
     return 1;
 }
 
+// Print all elements
 template <class T> void StackQueue<T>::print_elements()
 {
-   // cout << "Tail: "<< stqu[tail] << " Top: " << stqu[top] << endl;
     cout <<"SQ: ";
+    if(get_size()-tail==0){
+        cout << " ";
+    }
     for(int i = tail; i<get_size(); i++)
     {
         cout << stqu[i];
@@ -92,41 +94,50 @@ template <class T> void StackQueue<T>::print_elements()
     cout << endl;
 }
 
+// Pop from front
 template <class T> T StackQueue<T>::pop_front()
 {
+    // Get element from Top
     T pfront = stqu[top];
+
+    // Decrement top by 1
     top--;
-   // cout << "Popped from front: " << pfront << endl;
-    //print_elements();
     return pfront;
 }
 
+// Pop from rear
 template <class T> T StackQueue<T>::pop_rear()
 {
+    // Get element from tail
     T prear = stqu[tail];
+
+    // Increment tail by 1
     tail++;
-    //cout << "Popped from rear: " << prear << endl;
-    //print_elements();
+
     return prear;
 }
 
+// Get Front element
 template <class T> T StackQueue<T>::peek_front()
 {
     return stqu[top];
 }
 
+// Get size of stackqueue (only pushed elements)
 template <class T> int StackQueue<T>::get_size()
 {
     return top+1;
 }
-template <class T> void StackQueue<T>::move_all_elements(bool right)
-{
-    if(right)
-    {
-        for(int i = get_size(); i>tail; i--)
-        {
-            stqu[i] = stqu[i-1];
 
-        }
+// This is for creating a space at tail
+// Move every element to next index and make original tail to be zero
+template <class T> void StackQueue<T>::move_all_elements()
+{
+
+    for(int i = get_size(); i>tail; i--)
+    {
+        stqu[i] = stqu[i-1];
+
     }
+
 }

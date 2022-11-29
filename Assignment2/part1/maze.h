@@ -34,57 +34,62 @@ public:
 
 Maze::Maze()
 {
-    ifstream input_file; /* input file stream */
-    input_file.open ("input_maze.txt");
-    input_file >> nrow >> ncol; /* read the size from file */
+    // Input from file stream
+    ifstream input_file;
 
+    // Open input_maze.txt
+    input_file.open ("input_maze.txt");
+
+    // Read from opened file -> nrow and ncol
+    input_file >> nrow >> ncol;
+
+    // Create two dimensional char array
     state = new char*[nrow];
 
+    // Allocate memory for all columns for each row
     for(int i = 0; i < nrow; ++i)
         state[i] = new char[ncol];
 
+    // Read from file
     for(int i=0; i<nrow; ++i)
     {
         for(int j=0; j<ncol; ++j)
         {
             input_file >> state[i][j];
 
+            // If next char is not dot or # or T
             if(state[i][j] != '.' && state[i][j] != '#' && state[i][j] != 'T')
             {
-                posRobot[0] = i; // Row posY
-                posRobot[1] = j; // Col posX
+                posRobot[0] = i; // Y Position of robot, Row
+                posRobot[1] = j; // X Position of robot, Col
                 dirRobot =  state[i][j]; // Direction
             }
 
 
             if(state[i][j] == 'T')
             {
-                posTarget[0] = i; // Row posY
-                posTarget[1] = j; // Col posX
+                posTarget[0] = i; // Y Position of target, Row
+                posTarget[1] = j; // X Position of target, Col
             }
 
         }
     }
-    //cout << "Row: " <<nrow << endl;
-    //cout << "Column: " << ncol << endl;
     input_file.close();
 
 }
 
 Maze::Maze(const Maze& maz)
 {
+    // Copy constructor
     state = maz.state;
     nrow  = maz.nrow;
     ncol  = maz.ncol;
     dirRobot = maz.dirRobot;
 }
 
+// Print state of maze
 void Maze::print_state()
 {
-    //cout << "Dir Robot: " << dirRobot << endl;
-    //cout << "Pos Robot: " << posRobot[0] << " " << posRobot[1] << endl;
-    //cout << "Pos Target: " << posTarget[0] << " " << posTarget[1] << endl;
-    //cout << endl;
     for(int i=0; i<nrow; ++i)
     {
         for(int j=0; j<ncol; ++j)
@@ -97,6 +102,7 @@ void Maze::print_state()
     cout << endl;
 }
 
+// Determine if robot can move left based on NSWE
 bool Maze::can_move_left()
 {
     switch(dirRobot)
@@ -120,6 +126,7 @@ bool Maze::can_move_left()
     }
 }
 
+// Determine if robot can move right based on NSWE
 bool Maze::can_move_right()
 {
     switch(dirRobot)
@@ -143,7 +150,7 @@ bool Maze::can_move_right()
     }
 }
 
-
+// Determine if robot can move forward based on NSWE
 bool Maze::can_move_forward()
 {
     switch(dirRobot)
@@ -167,7 +174,7 @@ bool Maze::can_move_forward()
     }
 }
 
-
+// Determine if robot can move back based on NSWE
 bool Maze::can_move_back()
 {
     switch(dirRobot)
@@ -191,7 +198,7 @@ bool Maze::can_move_back()
     }
 }
 
-// Moving Left based on last direction
+// Moving Left based on last orientation (NSWE)
 void Maze::move_left()
 {
     if(can_move_left())
@@ -226,18 +233,15 @@ void Maze::move_left()
         }
         }
         state[posRobot[0]][posRobot[1]] = dirRobot;
-       // cout << "Moving left"<<endl;;
-       // print_state();
 
     }
     else
     {
-       // cout << "Cannot move left"<< endl;;
     }
 
 }
 
-// Moving Right based on last direction
+// Moving Right based on last orientation (NSWE)
 void Maze::move_right()
 {
     if(can_move_right())
@@ -272,18 +276,15 @@ void Maze::move_right()
         }
         }
         state[posRobot[0]][posRobot[1]] = dirRobot;
-        //cout << "Moving right"<< endl;
-        //print_state();
 
     }
     else
     {
-        //cout << "Cannot move right"<< endl;
     }
 
 }
 
-// Moving Forward based on last direction
+// Moving Forward based on last orientation (NSWE)
 void Maze::move_forward()
 {
     if(can_move_forward())
@@ -318,19 +319,15 @@ void Maze::move_forward()
         }
         }
         state[posRobot[0]][posRobot[1]] = dirRobot;
-        //cout << "Moving forward"<< endl;
-        //print_state();
 
     }
     else
     {
-        //cout << "Cannot move forward"<< endl;
     }
 
 }
 
-
-// Moving Back based on last direction
+// Moving Back based on last orientation (NSWE)
 void Maze::move_back()
 {
     if(can_move_back())
@@ -364,15 +361,13 @@ void Maze::move_back()
         }
         }
         state[posRobot[0]][posRobot[1]] = dirRobot;
-        //cout << "Moving back"<< endl;
-        //print_state();
     }
     else
     {
-        //cout << "Cannot move back"<< endl;
     }
 }
 
+// Check if the maze is solved by comparing the position of target and robot
 bool Maze::is_solved()
 {
     return (posRobot[0] == posTarget[0] && posRobot[1] == posTarget[1]) ? true : false;
