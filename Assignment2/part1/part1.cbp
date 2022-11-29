@@ -32,7 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="left_hand.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="maze.h" />
+		<Unit filename="stack_queue.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

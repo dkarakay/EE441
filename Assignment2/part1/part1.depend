@@ -1,5 +1,13 @@
 # depslib dependency file v1.0
-1669632252 source:c:\users\sedna\desktop\ee441\assignment2\part1\main.cpp
+1669749850 source:c:\users\sedna\desktop\ee441\assignment2\part1\main.cpp
 	<iostream>
 	<fstream>
+	"stack_queue.h"
+	"maze.h"
+
+1669749825 c:\users\sedna\desktop\ee441\assignment2\part1\maze.h
+	<iostream>
+	<fstream>
+
+1669749945 c:\users\sedna\desktop\ee441\assignment2\part1\stack_queue.h
 
