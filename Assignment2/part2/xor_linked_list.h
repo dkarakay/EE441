@@ -272,7 +272,7 @@ void _print_elements_original (Node<T>* head)
     // From top to rear
     while(currPtr != NULL)
     {
-        cout << currPtr ->data << " ";
+        cout << currPtr ->data;
         nextPtr = Xor(prevPtr, currPtr->xnode);
         prevPtr = currPtr;
         currPtr = nextPtr;

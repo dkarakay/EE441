@@ -33,6 +33,9 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="main.cpp" />
+		<Unit filename="maze.h" />
+		<Unit filename="node.h" />
+		<Unit filename="xor_linked_list.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
