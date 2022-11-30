@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1669840047 source:c:\users\sedna\desktop\ee441\assignment2\part2\part2\main.cpp
+	<iostream>
+	"node.h"
+	"xor_linked_list.h"
+
+1669829191 c:\users\sedna\desktop\ee441\assignment2\part2\part2\node.h
+	<iostream>
+
+1669840134 c:\users\sedna\desktop\ee441\assignment2\part2\part2\xor_linked_list.h
+	<iostream>
+
