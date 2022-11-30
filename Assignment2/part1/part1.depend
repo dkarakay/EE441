@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1669755193 source:c:\users\sedna\desktop\ee441\assignment2\part1\main.cpp
+1669846808 source:c:\users\sedna\desktop\ee441\assignment2\part1\main.cpp
 	<iostream>
 	<fstream>
 	"stack_queue.h"
@@ -9,5 +9,5 @@
 	<iostream>
 	<fstream>
 
-1669755585 c:\users\sedna\desktop\ee441\assignment2\part1\stack_queue.h
+1669846713 c:\users\sedna\desktop\ee441\assignment2\part1\stack_queue.h
 

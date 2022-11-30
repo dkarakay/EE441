@@ -137,5 +137,61 @@ int main()
 
     Maze maz = Maze();
     solver(maz);
+
+
+
+    // Test for StackQueue
+    /*
+        StackQueue<int> sq;
+
+        sq.print_elements();
+        sq.push_front(1);
+
+        sq.print_elements();
+        sq.push_front(2);
+
+        sq.print_elements();
+        sq.push_rear(3);
+
+        sq.print_elements();
+        sq.push_front(4);
+
+        sq.print_elements();
+        sq.push_front(5);
+        cout << "Peek: "<<sq.peek_front() << endl;
+
+        sq.print_elements();
+        sq.push_rear(6);
+
+        sq.print_elements();
+        int a = sq.pop_front();
+        cout << a<< endl;
+
+        sq.print_elements();
+        int b = sq.pop_rear();
+        cout << b << endl;
+
+        sq.print_elements();
+        sq.push_rear(7);
+
+        sq.print_elements();
+        sq.push_rear(8);
+
+        sq.print_elements();
+        sq.pop_front();
+
+        sq.print_elements();
+        sq.pop_front();
+
+        sq.print_elements();
+        sq.pop_rear();
+
+        sq.print_elements();
+        cout << "Peek: "<<sq.peek_front() << endl;
+        sq.print_elements();
+
+    */
+
     return 0;
+
 }

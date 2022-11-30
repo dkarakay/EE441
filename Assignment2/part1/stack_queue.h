@@ -63,7 +63,7 @@ template <class T> void StackQueue<T>::push_rear(T val)
     }
 
     // Move all elements to make tail zero
-    move_all_elements(true);
+    move_all_elements();
 
     // Increment top by 1, since we moved every element
     top = top + 1;
