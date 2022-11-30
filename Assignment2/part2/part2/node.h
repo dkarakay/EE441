@@ -9,9 +9,6 @@ class Node
 public:
     T data;
     Node<T>* xnode;
-    //Node<T>* Xor(Node<T>* x, Node<T>* y);
-    //void insert(Node<T>* &head_ref, T data);
-    //void printList(Node<T>* head);
 };
 
 
