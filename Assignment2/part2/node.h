@@ -11,7 +11,7 @@ public:
     Node<T>* xnode;
 };
 
-
+// XOR
 template <class T>
 Node<T>* Xor(Node<T>* x, Node<T>* y)
 {

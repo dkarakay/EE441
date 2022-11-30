@@ -2,13 +2,57 @@
 
 using namespace std;
 
+
+// LL Wrapper for Maze
+template <class T>
+class LL_wrapper
+{
+private:
+    Node<T>* head;
+
+public:
+    LL_wrapper()
+    {
+        head = NULL;
+    }
+    void push_front(T data)
+    {
+        _push_front(head, data);
+    }
+    void push_rear(T data)
+    {
+        _push_rear(head, data);
+    }
+
+    T pop_rear()
+    {
+        return _pop_rear(head);
+    }
+
+    T pop_front()
+    {
+        return _pop_front(head);
+    }
+
+    T peek_front()
+    {
+        return _peek_front(head);
+    }
+
+    void print_elements()
+    {
+        _print_elements(head);
+    }
+};
+
+
+
 template <class T>
 Node<T>* get_rear(Node<T>* head)
 {
     // If head is null -> empty list
     if(head == NULL)
     {
-        cout << "Empty list"<<endl;
         return head;
     }
 
@@ -32,7 +76,7 @@ Node<T>* get_rear(Node<T>* head)
 
 // Push to the front of XORLinkedList
 template <class T>
-void push_front (Node<T>* &head_ref, T data)
+void _push_front (Node<T>* &head_ref, T data)
 {
     // Create new node to hold passed data
     Node<T>* new_node = new Node<T>();
@@ -49,16 +93,14 @@ void push_front (Node<T>* &head_ref, T data)
 
     // Set head_ref = new_node
     head_ref = new_node;
-    cout << "Pushed front: " << data << endl;
 
-    // Print List
-    printList(head_ref);
+
 }
 
 
 // Push to the rear of XORLinkedList
 template <class T>
-void push_rear (Node<T>* &head_ref, T data)
+void _push_rear (Node<T>* &head_ref, T data)
 {
     // Create new node to hold passed data
     Node<T>* new_node = new Node<T>();
@@ -85,39 +127,34 @@ void push_rear (Node<T>* &head_ref, T data)
         // set rear->xcode to the new node
         rear = new_node;
     }
-    cout << "Pushed rear: " << data << endl;
 
-    // Print List
-    printList(head_ref);
 }
 
 // Pop Node from rear of XORLinkedList
 template <class T>
-Node<T>* pop_rear (Node<T>* &head_ref)
+T _pop_rear (Node<T>* &head_ref)
 {
     Node<T>* currPtr = head_ref;
     Node<T>* prevPtr = NULL;
     Node<T>* nextPtr;
 
     // Popped Node
-    Node<T>* popPtr = new Node<T>();
+    T popData;
 
     // If head_ref == null print empty list
     if(currPtr == NULL)
     {
-        cout << "Empty list" << endl;
+        return NULL;
     }
 
     // If linked list contains only one element
     else if(Xor(prevPtr, currPtr->xnode) == NULL)
     {
-        cout << "Popped rear: " <<currPtr->data << endl;
-        // make head_ref null and delete
 
         // Return popped Node
-        popPtr->data = currPtr->data;
-        popPtr->xnode = currPtr->xnode;
+        popData = currPtr->data;
 
+        // make head_ref null and delete
         head_ref = NULL;
         delete (head_ref);
     }
@@ -133,15 +170,13 @@ Node<T>* pop_rear (Node<T>* &head_ref)
         }
         // Temp NULL node
         Node<T>* t = NULL;
-        cout << "Popped rear "<< currPtr->data << endl;
 
         // Set prevPtr->xnode to the XOR based rule
         prevPtr->xnode = Xor(Xor(prevPtr->xnode, currPtr),t);
 
 
         // Return popped Node
-        popPtr->data = currPtr->data;
-        popPtr->xnode = currPtr->xnode;
+        popData= currPtr->data;
 
         // Remove currPtr
         delete(currPtr);
@@ -149,37 +184,32 @@ Node<T>* pop_rear (Node<T>* &head_ref)
 
     }
 
-    // Print List
-    printList(head_ref);
-
-    // Return modified head_ref
-    return popPtr;
+    // Return popped data
+    return popData;
 }
 
 template <class T>
-Node<T>* pop_front (Node<T>* &head_ref)
+T _pop_front (Node<T>* &head_ref)
 {
     Node<T>* currPtr = head_ref;
     Node<T>* prevPtr = NULL;
     Node<T>* nextPtr;
 
     // Popped Node
-    Node<T>* popPtr = new Node<T>();
+    T popData;
 
     // If head_ref == null print empty list
     if(head_ref == NULL)
     {
-        cout << "Empty List" << endl;
+        //cout << "Empty List" << endl;
+        return NULL;
     }
 
     // If linked list contains only one element
     else if(Xor(prevPtr, currPtr->xnode) == NULL)
     {
-        cout << "Popped front: " <<currPtr->data << endl;
-
         // Return popped Node
-        popPtr->data = currPtr->data;
-        popPtr->xnode = currPtr->xnode;
+        popData= currPtr->data;
 
         // make head_ref null and delete
         head_ref = NULL;
@@ -196,27 +226,25 @@ Node<T>* pop_front (Node<T>* &head_ref)
         // prevPtr -> currPtr -> nextPtr
         // Delete PrevPtr and set head_ref to currPtr
 
-        cout << "Popped front: "<<  prevPtr->data <<endl;
+        //cout << "Popped front: "<<  prevPtr->data <<endl;
         head_ref = currPtr;
         head_ref -> xnode = nextPtr;
 
         // Return popped Node
-        popPtr->data = prevPtr->data;
-        popPtr->xnode = prevPtr->xnode;
+        popData = prevPtr->data;
 
         delete(prevPtr);
     }
 
-    // Print List
-    printList(head_ref);
+
 
     // Return modified head_ref
-    return popPtr;
+    return popData;
 }
 
 
 template <class T>
-Node<T>* peek_front (Node<T>* &head_ref)
+T _peek_front (Node<T>* &head_ref)
 {
     Node<T>* currPtr = head_ref;
     Node<T>* prevPtr = NULL;
@@ -225,21 +253,17 @@ Node<T>* peek_front (Node<T>* &head_ref)
     // If head_ref == null print empty list
     if(head_ref == NULL)
     {
-        cout << "Empty List" << endl;
+        return NULL;
     }
 
-    cout << "Peek front " << currPtr->data<<endl;
-    // Print List
-    printList(head_ref);
-
-    // Return modified head_ref
-    return currPtr;
+    // Return peek data
+    return currPtr->data;
 }
 
 
 // Original printList but from front to rear
 template <class T>
-void printListOriginal (Node<T>* head)
+void _print_elements_original (Node<T>* head)
 {
     Node<T>* currPtr = head;
     Node<T>* prevPtr = NULL;
@@ -260,11 +284,11 @@ void printListOriginal (Node<T>* head)
 
 // Print from rear to front
 template <class T>
-void printList(Node<T>* head)
+void _print_elements(Node<T>* head)
 {
     if(head == NULL)
     {
-        printListOriginal(head);
+        _print_elements_original(head);
         return;
     }
     Node<T>* currPtr = head;
@@ -276,9 +300,9 @@ void printList(Node<T>* head)
         prevPtr = currPtr;
         currPtr = nextPtr;
     }
-    // Reverse List and use PrintListOriginal
+    // Reverse List and use _print_elements_original
     head = currPtr;
-    printListOriginal(head);
+    _print_elements_original(head);
 }
 
 
