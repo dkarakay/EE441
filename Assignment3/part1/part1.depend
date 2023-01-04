@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1672820420 source:c:\users\sedna\desktop\ee441\assignment3\part1\part1\main.cpp
+	<iostream>
+	<fstream>
+	"matrix.h"
+	"bst.h"
+
+1672606390 c:\users\sedna\desktop\ee441\assignment3\part1\part1\matrix.h
+
+1672820020 c:\users\sedna\desktop\ee441\assignment3\part1\part1\bst.h
+
