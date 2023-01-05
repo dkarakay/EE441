@@ -150,9 +150,17 @@ int main()
     // Create new HashTable*
     HashTable* ht = new HashTable();
 
-    Matrix m = read_matrix("matrices/15/0.txt");
+    Matrix m = read_matrix("matrices/15/2.txt");
     m.print();
     cout << determinant(m,ht) << endl;
 
+
+    /*Matrix a = Matrix(5);
+    Matrix b = Matrix(5);
+    a.print();
+    b.print();
+    if(!(a<b)){
+        cout << "test" << endl;
+    }*/
     return 0;
 }

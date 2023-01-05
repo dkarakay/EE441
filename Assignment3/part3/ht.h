@@ -42,7 +42,9 @@ int HashTable::hash(Matrix M)
     {
         for(int j=0; j<size; j++)
         {
-            hash_value += 61 + M.getElement(i,j);
+            hash_value = (61*hash_value + M.getElement(i,j));
+            hash_value %= SIZE_OF_HASH_TABLE;
+
             //cout << hash_value<< endl;
         }
     }
@@ -64,7 +66,7 @@ bool HashTable::key_exists(Matrix A)
             return false;
         }
 
-        else if(A.compareMatrices(table[temp_val]->key)==0)
+        else if(A==(table[temp_val]->key))
         {
             return true;
         }
@@ -80,7 +82,7 @@ bool HashTable::key_exists(Matrix A)
             return false;
         }
 
-        else if(A.compareMatrices(table[temp_val]->key)==0)
+        else if(A==(table[temp_val]->key))
         {
             return true;
         }
@@ -100,7 +102,7 @@ long HashTable::search(Matrix A)
     {
         if(table[temp_val]!= NULL)
         {
-            if(A.compareMatrices(table[temp_val]->key)==0)
+            if(A==(table[temp_val]->key))
             {
                 return table[temp_val]->value;
             }
@@ -115,7 +117,7 @@ long HashTable::search(Matrix A)
     {
         if(table[temp_val]!= NULL)
         {
-            if(A.compareMatrices(table[temp_val]->key)==0)
+            if(A==(table[temp_val]->key))
             {
                 return table[temp_val]->value;
             }
