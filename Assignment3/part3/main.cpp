@@ -150,7 +150,7 @@ int main()
     // Create new HashTable*
     HashTable* ht = new HashTable();
 
-    Matrix m = read_matrix("matrices/15/2.txt");
+    Matrix m = read_matrix("../matrices/15/2.txt");
     m.print();
     cout << determinant(m,ht) << endl;
 
