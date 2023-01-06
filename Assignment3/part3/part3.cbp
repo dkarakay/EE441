@@ -32,9 +32,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="bst.h" />
+		<Unit filename="det_bst.h" />
+		<Unit filename="det_ht.h" />
 		<Unit filename="ht.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="matrix.h" />
+		<Unit filename="read_matrix.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

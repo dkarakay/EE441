@@ -17,7 +17,6 @@ int main()
     Matrix m = read_matrix("matrices/15/4.txt");
     cout << endl << "Using Binary Search Tree"<<endl;
     cout <<"Determinant: " <<determinant(m,bstree) << endl;
-    cout <<"sizeof(BST_Node): "<< bstree->count << endl;
 
     return 0;
 }

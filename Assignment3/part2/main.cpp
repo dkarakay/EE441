@@ -16,7 +16,6 @@ int main()
     Matrix m = read_matrix("matrices/15/4.txt");
     cout << endl << "Using Hash Table"<<endl;
     cout <<"Determinant: " <<determinant(m,ht) << endl;
-    cout <<"sizeof(HT_Item): "<< ht->count << endl;
 
     return 0;
 }

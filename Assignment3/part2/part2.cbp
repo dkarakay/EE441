@@ -32,9 +32,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="det_ht.h" />
 		<Unit filename="ht.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="matrix.h" />
+		<Unit filename="read_matrix.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
