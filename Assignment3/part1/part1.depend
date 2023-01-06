@@ -9,14 +9,20 @@
 
 1672820020 c:\users\sedna\desktop\ee441\assignment3\part1\part1\bst.h
 
-1672834190 source:c:\users\sedna\desktop\ee441\assignment3\part1\main.cpp
+1672963447 source:c:\users\sedna\desktop\ee441\assignment3\part1\main.cpp
 	<iostream>
+	<math.h>
 	<fstream>
-	<sstream>
 	"matrix.h"
 	"bst.h"
+	"read_matrix.h"
+	"det_bst.h"
 
-1672606390 c:\users\sedna\desktop\ee441\assignment3\part1\matrix.h
+1672956980 c:\users\sedna\desktop\ee441\assignment3\part1\matrix.h
 
-1672820020 c:\users\sedna\desktop\ee441\assignment3\part1\bst.h
+1672964373 c:\users\sedna\desktop\ee441\assignment3\part1\bst.h
+
+1672956334 c:\users\sedna\desktop\ee441\assignment3\part1\read_matrix.h
+
+1672963416 c:\users\sedna\desktop\ee441\assignment3\part1\det_bst.h
 

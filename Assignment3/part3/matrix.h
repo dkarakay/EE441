@@ -150,4 +150,33 @@ bool Matrix::operator<(Matrix& B)
 
 
 
+// Creating a sub matrix from original
+Matrix sub_matrix(Matrix orig, int row, int col)
+{
+    // Create a sub matrix with size n-1
+    Matrix t = Matrix(orig.getSize()-1);
+
+
+    // Skip row 0
+    for(int i=1; i<orig.getSize(); i++)
+    {
+        int p = 0;
+        // Traverse all items on specific row
+        for(int j=0; j<orig.getSize(); j++)
+        {
+            // If selected column is not equal to index for row
+            if(j!=col)
+            {
+                // Get original element using i,j and put it on new Matrix T using i-1,p
+                t.setElement(i-1,p,orig.getElement(i,j));
+
+                // Increment p, p is used to track the position of new matrix
+                p++;
+            }
+        }
+    }
+
+
+    return t;
+}
 

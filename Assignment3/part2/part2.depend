@@ -1,12 +1,18 @@
 # depslib dependency file v1.0
-1672919293 source:c:\users\sedna\desktop\ee441\assignment3\part2\main.cpp
+1672963476 source:c:\users\sedna\desktop\ee441\assignment3\part2\main.cpp
 	<iostream>
 	<math.h>
 	<fstream>
 	"matrix.h"
 	"ht.h"
+	"read_matrix.h"
+	"det_ht.h"
 
-1672917024 c:\users\sedna\desktop\ee441\assignment3\part2\matrix.h
+1672956980 c:\users\sedna\desktop\ee441\assignment3\part2\matrix.h
 
-1672919231 c:\users\sedna\desktop\ee441\assignment3\part2\ht.h
+1672962764 c:\users\sedna\desktop\ee441\assignment3\part2\ht.h
+
+1672956334 c:\users\sedna\desktop\ee441\assignment3\part2\read_matrix.h
+
+1672957461 c:\users\sedna\desktop\ee441\assignment3\part2\det_ht.h
 

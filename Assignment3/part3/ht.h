@@ -14,10 +14,10 @@ class HashTable
 
 private:
     HT_Item* table[SIZE_OF_HASH_TABLE];
-    int count = 0;
 public:
+    int count = 0;
     HashTable();
-    int hash(Matrix M);
+    long hash(Matrix M);
     bool key_exists(Matrix A);
     long search(Matrix A);
     void insert(Matrix A, long detA);
@@ -32,11 +32,10 @@ HashTable::HashTable()
     {
         table[i] = NULL;
     }
-    count = 0;
 }
 
 // Hash function to determine the address for HashTable
-int HashTable::hash(Matrix M)
+long HashTable::hash(Matrix M)
 {
     long hash_value = M.getSize();
     int size = M.getSize();
@@ -145,23 +144,28 @@ long HashTable::search(Matrix A)
     }
 
     // Error
-    return -1111;
+    return NULL;
 
 }
 
 // Insert function
 void HashTable::insert(Matrix A, long detA)
 {
-    // Create new HT_Item dynamically
-    HT_Item* ht_item = new HT_Item();
 
-    // Put required values
-    ht_item->key   = A;
-    ht_item->value = detA;
-
+    if(key_exists(A)) {
+        return;
+    }
     // If key is not found
-    if(!key_exists(A))
+    else
     {
+        // Create new HT_Item dynamically
+        HT_Item* ht_item = new HT_Item();
+
+        // Put required values
+        ht_item->key   = A;
+        ht_item->value = detA;
+
+
         // Calculate Hash
         int hash_val = hash(A);
         int temp_val = hash_val;

@@ -1,90 +1,232 @@
 
 class BST_Node
 {
-
 public:
-    BST_Node();
-    BST_Node(Matrix A, long detA);
     BST_Node* left;
     BST_Node* right;
-    BST_Node* root;
     Matrix key;
     long value;
-
-    bool key_exists(Matrix A);
-    long search(Matrix A);
-    void insert(Matrix A, long detA);
-
-    BST_Node* _insert(BST_Node* root,Matrix A, long detA);
-    void print();
-
 };
 
 
 
-BST_Node::BST_Node()
+class BinarySearchTree
 {
-    key = Matrix();
-    value = 0;
-    left  = nullptr;
-    right = nullptr;
-    root = this;
+private:
+    BST_Node* root;
+public:
+    int count=0;
+    BinarySearchTree();
+    BinarySearchTree(Matrix A, long detA);
+    BST_Node* getRoot();
+    bool key_exists(Matrix A);
+    long search(Matrix A);
+    BST_Node* insert(BST_Node* temp_root,Matrix A, long detA);
+    void inorderPrint(BST_Node* start_root);
+};
+
+
+// Constructor
+BinarySearchTree::BinarySearchTree()
+{
+    root = nullptr;
 
 }
 
-
-void BST_Node::insert(Matrix A, long detA)
+// Copy Constructor for Matrix A and long detA
+BinarySearchTree::BinarySearchTree(Matrix A, long detA)
 {
-    root = _insert(this,A,detA);
+    root = new BST_Node();
+    root->left  = nullptr;
+    root->right = nullptr;
+    root->key   = A;
+    root->value = detA;
 }
 
-
-BST_Node* BST_Node::_insert(BST_Node* root, Matrix A,long detA)
+// Get Root node for insert and print functions
+BST_Node* BinarySearchTree::getRoot()
 {
-    if(root == NULL)
+    return root;
+}
+
+// Check if Matrix A exists in the tree
+bool BinarySearchTree::key_exists(Matrix A)
+{
+    // If root is null, return false
+    if(root == nullptr)
     {
-        return new BST_Node(A,detA);
+        return false;
     }
+
+    // If Matrix A is the key for root
+    else if(root->key == A)
+    {
+        return true;
+    }
+
     else
     {
-        BST_Node* cur;
+        // Create temp_root node
+        BST_Node* temp_root = root;
 
-        if(root->key.compareMatrices(A)==0)
+        // Check if root->value is null
+        while(root->value != NULL)
         {
-            return NULL;
+            // If temp_root is nullptr, then return false
+            if(temp_root==nullptr)
+            {
+                return false;
+            }
+
+            // If we find the same key in tree
+            else if(temp_root->key==A)
+            {
+                return true;
+            }
+
+            // If we look for a key that is greater than temp_root's key, go right
+            else if(temp_root->key < A)
+            {
+                temp_root = temp_root->right;
+            }
+
+            // If we look for a key that is less than temp_root's key, go left
+            else
+            {
+                temp_root = temp_root->left;
+
+            }
         }
 
-        else if(root->key.compareMatrices(A)==1)
-        {
-            cur = _insert(root->left, A ,detA);
-            root->left = cur;
-        }
-        else if(root->key.compareMatrices(A)==2)
-        {
-            cur = _insert(root->right, A ,detA);
-            root->right = cur;
-        }
-        return root;
     }
+    return false;
 }
 
-BST_Node::BST_Node(Matrix A,long detA)
+// Search for value
+long BinarySearchTree::search(Matrix A)
 {
-    key = A;
-    value = detA;
-    left  = nullptr;
-    right = nullptr;
+    // If root is nullptr -> error
+    if(root == nullptr)
+    {
+        return NULL;
+    }
+
+    // If Matrix A is the key for root
+    else if(root->key == A)
+    {
+        return root->value;
+    }
+
+    else
+    {
+        // Create temp_root node
+        BST_Node* temp_root = root;
+
+        // Check if root->value is null
+        while(root->value != NULL)
+        {
+
+            // If temp_root is nullptr -> error
+            if(temp_root==nullptr)
+            {
+                return NULL;
+            }
+
+            // If we find the same key in tree
+            else if(temp_root->key==A)
+            {
+                return temp_root->value;
+            }
+
+            // If we look for a key that is greater than temp_root's key, go right
+            else if((temp_root->key < A))
+            {
+                temp_root = temp_root->right;
+            }
+
+            // If we look for a key that is less than temp_root's key, go left
+            else
+            {
+                temp_root = temp_root->left;
+
+            }
+        }
+
+    }
+    return NULL;
+}
+
+// Insert to BinarySearchTree
+BST_Node* BinarySearchTree::insert(BST_Node* temp_root, Matrix A, long detA)
+{
+
+   if(key_exists(A)){
+        return NULL;
+    }
+
+    else {
+
+        // If temp_root is null, create new node
+        if(temp_root == nullptr)
+        {
+            temp_root = new BST_Node();
+            temp_root->left  = nullptr;
+            temp_root->right = nullptr;
+            temp_root->key   = A;
+            temp_root->value = detA;
+
+            // Increment number of BST_Node objects
+            count +=1;
+
+            // Set root as new node
+            root = temp_root;
+            return temp_root;
+        }
+        else
+        {
+            BST_Node* track;
+
+            // If we look for a key that is greater than temp_root's key, go right
+            if(temp_root->key < A)
+            {
+                // Go to right recursively
+                track = insert(temp_root->right, A, detA);
+                temp_root->right = track;
+            }
+
+            // If we look for a key that is less than temp_root's key, go left
+            else
+            {
+                // Go to left recursively
+                track = insert(temp_root->left, A, detA);
+                temp_root->left = track;
+            }
+
+            // Set root as new node
+            root = temp_root;
+            return temp_root;
+        }
+    }
+
+
 
 }
 
-/*void BST_Node::print(){
-    if(!root) return;
-
-    BST_Node *temp = root;
-    while(root->left != NULL){
-        cout << temp.value << endl;
-        temp = temp
-
+// Print Binary Search Tree inorder
+void BinarySearchTree::inorderPrint(BST_Node* start_root)
+{
+    if(start_root==nullptr)
+    {
+        return;
     }
-}*/
+
+    // L - N - R
+    // Prints in ascending order
+    inorderPrint(start_root->left);
+
+    start_root->key.print();
+    cout <<endl<< start_root->value << " " << endl;;
+
+    inorderPrint(start_root->right);
+}
 

@@ -1,45 +1,23 @@
 #include <iostream>
+#include <math.h>
 #include <fstream>
-#include <sstream>
 #include "matrix.h"
 #include "bst.h"
+#include "read_matrix.h"
+#include "det_bst.h"
+
 using namespace std;
+
 
 int main()
 {
-    /*string line;
-    char val;
-    ifstream input_file;
-    input_file.open ("0.txt");
-    int i = 0;
-    while(getline(input_file, line, ' '))
-    {
-        if (line.length() != 0)
-        {
-            cout << i << line << endl;
-                    i+=1;
+    // Create new BinarySearchTree*
+    BinarySearchTree* bstree = new BinarySearchTree();
 
-        }
+    Matrix m = read_matrix("matrices/15/4.txt");
+    cout << endl << "Using Binary Search Tree"<<endl;
+    cout <<"Determinant: " <<determinant(m,bstree) << endl;
+    cout <<"sizeof(BST_Node): "<< bstree->count << endl;
 
-
-
-    }*/
-
-    /*Matrix m = Matrix(5);
-    Matrix m2 = Matrix(5);
-    m.print();
-    //m.setElement(0,0,4);
-    m.print();
-
-    cout << m.compareMatrices(m2) << endl;
-
-    BST_Node b = BST_Node();
-    b.print();
-
-    /*cout << b.root->value<<endl;
-    cout<<endl;
-    b.insert(m2,6);
-    b.print(&b);
-    */
     return 0;
 }
